@@ -22,6 +22,11 @@ class Expense
     expenses
   end
 
+  define_method(:save) do
+    result = DB.exec("INSERT INTO expenses (description, amount, date_purchased) VALUES ('#{@description}', #{@amount}, '#{@date_purchased}') RETURNING id;")
+    @id = result.first().fetch("id").to_i()
+  end
+
   define_method(:==) do |other|
     same_id = self.id().eql?(other.id())
     same_description = self.description().eql?(other.description())
