@@ -1,5 +1,6 @@
 require('rspec')
 require('pg')
+require('pry')
 require('expense')
 require('category')
 
